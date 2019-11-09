@@ -1,0 +1,11 @@
+DavidAnson.vscode-markdownlint
+GrapeCity.gc-excelviewer
+ms-azuretools.vscode-docker
+MS-CEINTL.vscode-language-pack-ja
+ms-python.python
+ms-vscode.Go
+shd101wyy.markdown-preview-enhanced
+teabyii.ayu
+thenikso.github-plus-theme
+tinkertrain.theme-panda
+vscodevim.vim

@@ -1,0 +1,29 @@
+{
+  "vim.cmdLineInitialColon": true,
+  "editor.wordWrap": "on",
+  "editor.minimap.enabled": false,
+  "editor.fontSize": 14,
+  "editor.fontFamily": "Cica",
+
+  // python
+  "python.testing.nosetestsEnabled": true,
+  "python.testing.nosetestArgs": [
+      "-sv"
+  ],
+  "python.pythonPath": "${env:HOME}/.pyenv/versions/3.6.0/bin/python",
+  // lint は flake8 を有効にする
+  "python.linting.flake8Enabled": true,
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": false,
+
+  // jupyter
+  "jupyter.appendResults": false,
+
+  // markdown
+  "markdown.preview.fontSize": 10,
+  "window.zoomLevel": 0,
+  "workbench.statusBar.visible": true,
+  "workbench.colorTheme": "Panda Syntax",
+  "workbench.iconTheme": "vs-minimal",
+  "workbench.activityBar.visible": false,
+}

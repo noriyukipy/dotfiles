@@ -1,0 +1,25 @@
+- hosts: all
+  tasks:
+    - name: Show config parameter - vscode_setting_dir
+      debug:
+        var: vscode_setting_dir
+
+    # vscode
+    - name: Remove previous vscode config file
+      file:
+        path: "{{ vscode_setting_dir }}/{{ item }}"
+        state: absent
+      with_items:
+        - settings.json
+        - keybindings.json
+    - name: Create a Symbolic link vscode config file
+      file:
+        src: "{{ ansible_env.PWD }}/.vscode/{{ item }}"
+        path: "{{ vscode_setting_dir }}/{{ item }}"
+        state: link
+      with_items:
+        - settings.json
+        - keybindings.json
+    - name: Install extensions
+      command: "code --install-extension {{ item }}"
+      with_lines: cat .vscode/extensions.txt
