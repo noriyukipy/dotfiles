@@ -26,4 +26,5 @@
   "workbench.colorTheme": "Panda Syntax",
   "workbench.iconTheme": "vs-minimal",
   "workbench.activityBar.visible": false,
+  "editor.lineHeight": 18,
 }

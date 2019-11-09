@@ -22,7 +22,7 @@ $ ansible-playbook -i inventory.ini main.yml --connection=local
 To keep current extensions, execute `code` command with `--list-extensions` option.
 
 ```sh
-$ code --list-extensions >.vscode/extensions.txt
+$ code --list-extensions >vscode/extensions.txt
 ```
 
 If you want to uninstall all extensions before applying playbook, execute following command to uninstall all installed extensions.

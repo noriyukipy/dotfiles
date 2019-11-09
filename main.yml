@@ -14,7 +14,7 @@
         - keybindings.json
     - name: Create a Symbolic link vscode config file
       file:
-        src: "{{ ansible_env.PWD }}/.vscode/{{ item }}"
+        src: "{{ ansible_env.PWD }}/vscode/{{ item }}"
         path: "{{ vscode_setting_dir }}/{{ item }}"
         state: link
       with_items:
@@ -22,4 +22,4 @@
         - keybindings.json
     - name: Install extensions
       command: "code --install-extension {{ item }}"
-      with_lines: cat .vscode/extensions.txt
+      with_lines: cat vscode/extensions.txt
