@@ -4,6 +4,31 @@
       debug:
         var: vscode_setting_dir
 
+    # Remove dotfiles in HOME directory
+    - name: Remove dotfiles in HOME directory
+      file:
+        path: "{{ ansible_env.HOME }}/{{ item }}"
+        state: absent
+      with_items:
+        - .tmux
+        - .zsh
+        - .zshrc
+    # Install dotfiles in HOME directory
+    - name: Install dotfiles in HOME directory
+      file:
+        src: "{{ ansible_env.PWD }}/home/{{ item }}"
+        path: "{{ ansible_env.HOME }}/{{ item }}"
+        state: link
+      with_items:
+        - .tmux
+        - .zsh
+        - .zshrc
+    - name: Get plugin manager "antigen" for zsh
+      get_url:
+        url: https://git.io/antigen
+        dest: "{{ ansible_env.HOME }}/.zsh/antigen.zsh"
+        mode: '0644'
+
     # vscode
     - name: Remove previous vscode config file
       file:

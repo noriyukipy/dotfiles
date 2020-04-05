@@ -8,14 +8,7 @@ Prepare following items before run Ansible.
 1. Install Ansible.
 2. Check `[all:vars]` section in `inventory.ini` to confirm your config path is correct. 
 
-## Install
-
-Execute `ansible-playbook` command.
-
-```sh
-$ ansible-playbook -i inventory.ini main.yml --connection=local
-```
-## Config
+## Before execution
 
 ### vscode
 
@@ -29,4 +22,12 @@ If you want to uninstall all extensions before applying playbook, execute follow
 
 ```sh
 $ code --list-extensions | xargs -n1 -I{} code --uninstall-extension {}
+```
+
+## Set dot files
+
+Execute `ansible-playbook` command.
+
+```sh
+$ ansible-playbook -i inventory.ini main.yml --connection=local
 ```

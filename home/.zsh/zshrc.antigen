@@ -1,0 +1,22 @@
+source ${HOME}/.zsh/antigen.zsh
+
+# This use command lets you load any (supported) zsh pre-packaged framework, like
+antigen use oh-my-zsh
+
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+#antigen bundle git
+#antigen bundle heroku
+#antigen bundle pip
+#antigen bundle lein
+#antigen bundle command-not-found
+
+# This bundle command tells antigen to install (if not already installed) and load the
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# Load theme
+#antigen theme miloshadzic
+
+# Original
+antigen bundle zsh-users/zsh-autosuggestions
+
+antigen apply
