@@ -2,11 +2,16 @@
 
 ## Preparation
 
-This repository uses Ansible to install dotfiles to your localhost node.
-Prepare following items before run Ansible.
+Install dependencies first.
 
-1. Install Ansible.
-2. Check `[all:vars]` section in `inventory.ini` to confirm your config path is correct. 
+```sh
+# for MacOS with Homebrew package manager
+$ brew install ansible tmux go zsh tmux-mem-cpu-load
+```
+
+Install Visual Studio Code, and install `code` command from it.
+
+After that, check `[all:vars]` section in `inventory.ini` to confirm your config path is correct. 
 
 ## Before execution
 
