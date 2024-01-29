@@ -103,3 +103,26 @@ function zle-keymap-select zle-line-init zle-line-finish
 zle -N zle-line-init
 zle -N zle-line-finish
 zle -N zle-keymap-select
+
+
+# Pecoによる過去コマンドの検索
+function peco-select-history() {
+  BUFFER=$(\history -n -r 1 | peco --prompt "History Search >")
+  CURSOR=$#BUFFER
+  zle clear-screen
+}
+zle -N peco-select-history
+bindkey '^r' peco-select-history
+ 
+
+# Pecoによる現在のディレクトリからの移動
+function peco-find-directory() {
+    search_root=`pwd`
+    file_path="$(find ${search_root} -maxdepth 5 | peco --prompt 'Directory Search >')"
+    BUFFER="${BUFFER} ${file_path}"
+    CURSOR=$#BUFFER
+    zle clear-screen
+}
+zle -N peco-find-directory
+# bind keys
+bindkey '^u' peco-find-directory

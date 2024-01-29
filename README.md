@@ -6,7 +6,7 @@ Install dependencies first.
 
 ```sh
 # for MacOS with Homebrew package manager
-$ brew install ansible tmux go zsh tmux-mem-cpu-load
+$ brew install ansible tmux go zsh tmux-mem-cpu-load peco
 ```
 
 Install Visual Studio Code, and install `code` command from it.
