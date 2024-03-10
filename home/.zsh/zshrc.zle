@@ -107,7 +107,7 @@ zle -N zle-keymap-select
 
 # Pecoによる過去コマンドの検索
 function peco-select-history() {
-  BUFFER=$(\history -n -r 1 | peco --prompt "History Search >")
+  BUFFER=$(\history -n -r 1 | peco --prompt "History Search >" | perl -wlp -e 's/\\n/\n/g')
   CURSOR=$#BUFFER
   zle clear-screen
 }
