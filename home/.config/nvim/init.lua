@@ -122,6 +122,7 @@ vim.keymap.set('n', '<C-n>', '<cmd>bnext<CR>', { desc = 'Move focus to the upper
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -168,6 +169,7 @@ require('lazy').setup({
   require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.bufferline',
   require 'kickstart.plugins.telescope',
+  require 'kickstart.plugins.spring-night',  -- colorscheme must be loaded after other plugins. Otherwise color may change.
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
