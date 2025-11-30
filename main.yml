@@ -13,6 +13,7 @@
         - .tmux
         - .zsh
         - .zshrc
+        - .config/nvim
     # Install dotfiles in HOME directory
     - name: Install dotfiles in HOME directory
       file:
@@ -23,6 +24,7 @@
         - .tmux
         - .zsh
         - .zshrc
+        - .config/nvim
     - name: Get plugin manager "antigen" for zsh
       get_url:
         url: https://git.io/antigen

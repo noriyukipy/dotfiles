@@ -6,7 +6,7 @@ Install dependencies first.
 
 ```sh
 # for MacOS with Homebrew package manager
-$ brew install ansible tmux go zsh tmux-mem-cpu-load peco
+$ brew install ansible tmux go zsh tmux-mem-cpu-load peco neovim ripgrep
 ```
 
 Install Visual Studio Code, and install `code` command from it.
@@ -14,6 +14,16 @@ Install Visual Studio Code, and install `code` command from it.
 After that, check `[all:vars]` section in `inventory.ini` to confirm your config path is correct. 
 
 ## Before execution
+
+### nvim
+
+To clean up existing plugins, run following commands:
+
+```
+$ rm -rf ~/.local/share/nvim/lazy
+$ rm -rf ~/.local/state/nvim/lazy
+$ rm ~/.config/nvim/lazy-lock.json
+```
 
 ### vscode
 
@@ -36,3 +46,7 @@ Execute `ansible-playbook` command.
 ```sh
 $ ansible-playbook -i inventory.ini main.yml --connection=local
 ```
+
+## License
+
+Some config for nvim comes from kickstart.nvim (https://github.com/nvim-lua/kickstart.nvim). The license file is located in third_party/kickstart.nvim/LICENSE.md .
