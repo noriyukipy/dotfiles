@@ -169,7 +169,7 @@ require('lazy').setup({
   require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.bufferline',
   require 'kickstart.plugins.telescope',
-  require 'kickstart.plugins.spring-night',  -- colorscheme must be loaded after other plugins. Otherwise color may change.
+  require 'kickstart.plugins.spring-night',
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
