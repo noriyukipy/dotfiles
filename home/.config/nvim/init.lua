@@ -118,9 +118,9 @@ vim.keymap.set('n', '<C-n>', '<cmd>bnext<CR>', { desc = 'Move focus to the upper
 
 -- Command lie editing
 -- See `:help cmdline-editing`
-vim.keymap.set('c', '<C-A>', '<Home>', { desc = '' })
-vim.keymap.set('c', '<C-F>', '<Right>', { desc = '' })
-vim.keymap.set('c', '<C-B>', '<Left>', { desc = '' })
+vim.keymap.set('c', '<C-A>', '<Home>',  { desc = 'Move at the beginning' })
+vim.keymap.set('c', '<C-F>', '<Right>', { desc = 'Move right' })
+vim.keymap.set('c', '<C-B>', '<Left>',  { desc = 'Move left' })
 
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
@@ -176,6 +176,7 @@ require('lazy').setup({
   require 'kickstart.plugins.telescope',
   require 'kickstart.plugins.telescope-file-browser',
   require 'kickstart.plugins.spring-night',
+  require 'kickstart.plugins.mini',
   --require 'kickstart.plugins.neo-tree',
   --require 'kickstart.plugins.bufferline',
 
