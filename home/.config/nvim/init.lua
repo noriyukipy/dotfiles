@@ -116,6 +116,13 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', '<C-p>', '<cmd>bprev<CR>', { desc = 'Move focus to the upper window' })
 vim.keymap.set('n', '<C-n>', '<cmd>bnext<CR>', { desc = 'Move focus to the upper window' })
 
+-- Command lie editing
+-- See `:help cmdline-editing`
+vim.keymap.set('c', '<C-A>', '<Home>', { desc = '' })
+vim.keymap.set('c', '<C-F>', '<Right>', { desc = '' })
+vim.keymap.set('c', '<C-B>', '<Left>', { desc = '' })
+
+
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
@@ -166,10 +173,12 @@ rtp:prepend(lazypath)
 require('lazy').setup({
   require 'kickstart.plugins.which-key',
   require 'kickstart.plugins.gitsigns',
-  require 'kickstart.plugins.neo-tree',
-  require 'kickstart.plugins.bufferline',
   require 'kickstart.plugins.telescope',
+  require 'kickstart.plugins.telescope-file-browser',
   require 'kickstart.plugins.spring-night',
+  --require 'kickstart.plugins.neo-tree',
+  --require 'kickstart.plugins.bufferline',
+
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --

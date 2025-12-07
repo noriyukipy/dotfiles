@@ -18,6 +18,11 @@ return {
       window = {
         mappings = {
           ['\\'] = 'close_window',
+          ["/"] = 'none',  -- Unset binding. See https://github.com/nvim-neo-tree/neo-tree.nvim/discussions/265
+          ["<C-s>"] = 'fuzzy_finder',
+          -- Use the same keybinding as telescope to open a file
+          ["<C-v>"] = "open_vsplit",
+          ["<C-x>"] = "open_split",
         },
       },
     },
