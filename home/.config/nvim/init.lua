@@ -28,9 +28,9 @@ vim.o.showmode = false
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
-end)
+--vim.schedule(function()
+--  vim.o.clipboard = 'unnamedplus'
+--end)
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -104,6 +104,11 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 -- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
+-- text object for search
+vim.keymap.set('o', 'i/', 'gn', { desc = 'Move forward to the previous search' })
+vim.keymap.set('o', 'i?', 'gN', { desc = 'Move back to the previous search' })
+
+
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
@@ -122,6 +127,8 @@ vim.keymap.set('c', '<C-A>', '<Home>',  { desc = 'Move at the beginning' })
 vim.keymap.set('c', '<C-F>', '<Right>', { desc = 'Move right' })
 vim.keymap.set('c', '<C-B>', '<Left>',  { desc = 'Move left' })
 
+vim.keymap.set('i', '<BS>', '<NOP>', { desc = 'Disable BS C-H' })
+vim.keymap.set('c', '<BS>', '<NOP>', { desc = 'Disable BS C-H' })
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
@@ -173,12 +180,13 @@ rtp:prepend(lazypath)
 require('lazy').setup({
   require 'kickstart.plugins.which-key',
   require 'kickstart.plugins.gitsigns',
-  require 'kickstart.plugins.telescope',
+  require 'kickstart.plugins.snacks',
   require 'kickstart.plugins.spring-night',
-  require 'kickstart.plugins.mini',
   require 'kickstart.plugins.oil',
   require 'kickstart.plugins.quicker',
+  --require 'kickstart.plugins.telescope',
   --require 'kickstart.plugins.telescope-file-browser',
+  --require 'kickstart.plugins.mini',
   --require 'kickstart.plugins.neo-tree',
   --require 'kickstart.plugins.bufferline',
 
