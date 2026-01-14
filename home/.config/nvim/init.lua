@@ -127,8 +127,10 @@ vim.keymap.set('c', '<C-A>', '<Home>',  { desc = 'Move at the beginning' })
 vim.keymap.set('c', '<C-F>', '<Right>', { desc = 'Move right' })
 vim.keymap.set('c', '<C-B>', '<Left>',  { desc = 'Move left' })
 
+-- Disable backspace in insert and command modes
 vim.keymap.set('i', '<BS>', '<NOP>', { desc = 'Disable BS C-H' })
 vim.keymap.set('c', '<BS>', '<NOP>', { desc = 'Disable BS C-H' })
+
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })

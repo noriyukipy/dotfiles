@@ -37,6 +37,7 @@ return {
     terminal = {
       enabled = true,
       shell = "bash",
+      interactive = false,
     }
   },
   keys = {
@@ -47,7 +48,7 @@ return {
     { "<leader>/", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
     { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
     { "<leader>h", function() Snacks.picker.help() end, desc = "Help Pages" },
-    { "<leader>t", function() Snacks.explorer() end, desc = "File Explorer" },
+    { "<leader>b", function() Snacks.explorer() end, desc = "File Explorer" },
     { "<leader>p", function() Snacks.picker.pickers() end, desc = "Pickers" },
     { "<leader>q", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
 
@@ -56,5 +57,8 @@ return {
     { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
     { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
     { '<leader>s/', function() Snacks.picker.search_history() end, desc = "Search History" },
+
+    -- Terminal
+    { "<leader>t", function() Snacks.terminal() end, desc = "Toggle Terminal" },
   },
 }

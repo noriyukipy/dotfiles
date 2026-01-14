@@ -18,7 +18,7 @@ return {
       keymaps = {
         ["<C-h>"] = false,
         ["<C-l>"] = false,
-        ["q"] = ":q<CR>",
+        ["q"] = { "actions.close", mode = "n" },
       },
       view_options = {
         show_hidden = true,
