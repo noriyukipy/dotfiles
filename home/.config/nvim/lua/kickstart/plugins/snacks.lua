@@ -59,6 +59,6 @@ return {
     { '<leader>s/', function() Snacks.picker.search_history() end, desc = "Search History" },
 
     -- Terminal
-    { "<leader>t", function() Snacks.terminal() end, desc = "Toggle Terminal" },
+    --{ "<leader>t", function() Snacks.terminal() end, desc = "Toggle Terminal" },
   },
 }

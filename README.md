@@ -6,7 +6,10 @@ Install dependencies first.
 
 ```sh
 # for MacOS with Homebrew package manager
-$ brew install ansible tmux go zsh tmux-mem-cpu-load peco neovim ripgrep font-hack-nerd-font fd
+$ brew install ansible tmux go zsh tmux-mem-cpu-load peco
+
+# Packages required in Nvim
+$ brew install neovim ripgrep font-hack-nerd-font fd python-lsp-server
 ```
 
 Install Visual Studio Code, and install `code` command from it.
