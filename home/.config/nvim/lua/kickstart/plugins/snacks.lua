@@ -19,6 +19,11 @@ return {
     },
     picker = {
       enabled = true,
+      main = {
+        -- Open a buffer in the current window from picker opened in Oil buffer
+        -- https://github.com/folke/snacks.nvim/issues/618
+        current = true
+      },
       win = {
         input = {
           keys = {
