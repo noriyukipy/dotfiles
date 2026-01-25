@@ -19,6 +19,7 @@ return {
         ["<C-h>"] = false,
         ["<C-l>"] = false,
         ["q"] = { "actions.close", mode = "n" },
+        ["gy"] = { "actions.yank_entry", mode = "n" },
       },
       view_options = {
         show_hidden = true,
