@@ -41,7 +41,7 @@ return {
     statuscolumn = { enabled = true },
     terminal = {
       enabled = true,
-      shell = "bash",
+      shell = "zsh",
       interactive = false,
     }
   },

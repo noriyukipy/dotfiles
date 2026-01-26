@@ -216,6 +216,7 @@ require('lazy').setup({
   require 'kickstart.plugins.spring-night',
   require 'kickstart.plugins.oil',
   require 'kickstart.plugins.quicker',
+  require 'kickstart.plugins.nvim-scrollbar',
   --require 'kickstart.plugins.telescope',
   --require 'kickstart.plugins.telescope-file-browser',
   --require 'kickstart.plugins.mini',
