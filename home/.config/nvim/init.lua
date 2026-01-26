@@ -213,10 +213,15 @@ require('lazy').setup({
   require 'kickstart.plugins.which-key',
   require 'kickstart.plugins.gitsigns',
   require 'kickstart.plugins.snacks',
-  require 'kickstart.plugins.spring-night',
   require 'kickstart.plugins.oil',
   require 'kickstart.plugins.quicker',
   require 'kickstart.plugins.nvim-scrollbar',
+
+  -- Colorscheme
+  require 'kickstart.plugins.nightfox',
+  --require 'kickstart.plugins.spring-night',
+  --require 'kickstart.plugins.catppuccin',
+
   --require 'kickstart.plugins.telescope',
   --require 'kickstart.plugins.telescope-file-browser',
   --require 'kickstart.plugins.mini',
