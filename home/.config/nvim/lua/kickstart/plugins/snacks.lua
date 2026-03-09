@@ -31,6 +31,25 @@ return {
           },
         },
       },
+      -- Disable keymap in explorer https://github.com/folke/snacks.nvim/discussions/1407
+      sources = {
+        explorer = {
+          win = {
+            input = {
+              keys = {
+                ["/"] = false,
+                ["?"] = false,
+              },
+            },
+            list = {
+              keys = {
+                ["/"] = false,
+                ["?"] = false,
+              },
+            },
+          },
+        },
+      },
     },
     scroll = {
       enabled = true,
@@ -56,6 +75,7 @@ return {
     { "<leader>b", function() Snacks.explorer() end, desc = "File Explorer" },
     { "<leader>p", function() Snacks.picker.pickers() end, desc = "Pickers" },
     { "<leader>q", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
+    { "<leader>r", function() Snacks.picker.recent() end, desc = "Find Files" },
 
     -- Keys with prefix <leader>s
     { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },

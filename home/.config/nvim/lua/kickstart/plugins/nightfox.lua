@@ -7,11 +7,10 @@ return {
       groups = {
         all = {
           -- Set background color of line number.
-          LineNR = { fg = "fg3", bg = "#122124" },  -- darker color of terafox default bg color gb1=#152528 (deep blue green)
-          -- LineNR = { bg = "#101D20" },  -- much darker color
+          -- Check $HOME/.local/share/nvim/lazy/nightfox.nvim/lua/nightfox/palette/terafox.lua
+          LineNR = { fg = "fg3", bg = "bg3" },  -- much darker color
         },
       }
     })
-    vim.cmd.colorscheme 'terafox'
   end,
 }

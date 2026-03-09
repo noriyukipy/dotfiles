@@ -1,7 +1,7 @@
 # [Environment Variables]
 # 基本的な環境変数を設定する
 export LANG=ja_JP.UTF-8
-export TERM=xterm-256color
+export TERM=tmux-256color
 export EDITOR=vim
 export LSCOLORS=cxfxbxdxbxegedabagabad
 HISTSIZE=10000000
@@ -26,9 +26,5 @@ alias tmux='tmux -f <(cat $BASE/.tmux/tmux-prefix-q.conf $BASE/.tmux/tmux-defaul
 source ${BASE}/.zsh/zshrc.alias
 
 # [pyenv]
-source ${BASE}/.zsh/zshrc.pyenv
+#source ${BASE}/.zsh/zshrc.pyenv
 
-# [go]
-export GOPATH=$(go env GOPATH)
-export PATH=$PATH:$GOPATH/bin
-export GO111MODULE=on

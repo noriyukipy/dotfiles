@@ -96,6 +96,41 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
+vim.api.nvim_create_autocmd('TermOpen', {
+  callback = function()
+    vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+    vim.keymap.set('n', 'q', '<cmd>close<CR>', { buffer = true, desc = 'Close terminal window' })
+    vim.keymap.set('t', '<C-w>c', '<cmd>close<CR>', { buffer = true, desc = 'Close terminal window' })
+    vim.keymap.set('t', '<C-w>j', '<C-\\><C-n><C-w>j', { buffer = true, desc = '' })
+    vim.keymap.set('t', '<C-w>k', '<C-\\><C-n><C-w>k', { buffer = true, desc = '' })
+    vim.keymap.set('t', '<C-w>h', '<C-\\><C-n><C-w>h', { buffer = true, desc = '' })
+    vim.keymap.set('t', '<C-w>l', '<C-\\><C-n><C-w>l', { buffer = true, desc = '' })
+    vim.keymap.set('t', '<C-w><C-c>', '<cmd>close<CR>', { buffer = true, desc = 'Close terminal window' })
+    vim.keymap.set('t', '<C-w><C-j>', '<C-\\><C-n><C-w>j', { buffer = true, desc = '' })
+    vim.keymap.set('t', '<C-w><C-k>', '<C-\\><C-n><C-w>k', { buffer = true, desc = '' })
+    vim.keymap.set('t', '<C-w><C-h>', '<C-\\><C-n><C-w>h', { buffer = true, desc = '' })
+    vim.keymap.set('t', '<C-w><C-l>', '<C-\\><C-n><C-w>l', { buffer = true, desc = '' })
+  end,
+})
+vim.keymap.set('n', '<leader>t', function()
+  local term_buf = nil
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    local name = vim.api.nvim_buf_get_name(buf)
+    if name:match('^term://.*zsh') then
+      term_buf = buf
+      break
+    end
+  end
+  vim.cmd('split')
+  if term_buf then
+    vim.api.nvim_set_current_buf(term_buf)
+  else
+    vim.cmd('terminal')
+    vim.cmd('set nu')
+  end
+  vim.cmd('startinsert')
+end, { desc = 'Start terminal in insert mode' })
+
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 vim.keymap.set('n', '<leader>t', function()
   vim.cmd('split')
@@ -218,9 +253,10 @@ require('lazy').setup({
   require 'kickstart.plugins.nvim-scrollbar',
 
   -- Colorscheme
+  require 'kickstart.plugins.spring-night',
+  require 'kickstart.plugins.catppuccin',
   require 'kickstart.plugins.nightfox',
-  --require 'kickstart.plugins.spring-night',
-  --require 'kickstart.plugins.catppuccin',
+  require 'kickstart.plugins.tokyonight',
 
   --require 'kickstart.plugins.telescope',
   --require 'kickstart.plugins.telescope-file-browser',
