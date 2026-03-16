@@ -132,13 +132,6 @@ vim.keymap.set('n', '<leader>t', function()
 end, { desc = 'Start terminal in insert mode' })
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-vim.keymap.set('n', '<leader>t', function()
-  vim.cmd('split')
-  vim.cmd('terminal')
-  vim.cmd('set nu')
-  vim.cmd('startinsert')
-end, { desc = 'Start terminal in insert mode' })
-
 
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
