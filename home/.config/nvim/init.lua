@@ -113,6 +113,8 @@ vim.api.nvim_create_autocmd('TermOpen', {
     vim.keymap.set('t', '<C-w><C-k>', '<C-\\><C-n><C-w>k', { buffer = true, desc = '' })
     vim.keymap.set('t', '<C-w><C-h>', '<C-\\><C-n><C-w>h', { buffer = true, desc = '' })
     vim.keymap.set('t', '<C-w><C-l>', '<C-\\><C-n><C-w>l', { buffer = true, desc = '' })
+    vim.keymap.set('t', '<C-w>0', '<cmd>close<CR>', { desc = 'Close window' })
+    vim.keymap.set('t', '<C-w><C-0>', '<cmd>close<CR>', { desc = 'Close window' })
   end,
 })
 vim.keymap.set('n', '<C-t><C-t>', function()
