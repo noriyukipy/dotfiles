@@ -16,7 +16,7 @@ vim.g.have_nerd_font = true
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.o.relativenumber = true
+vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
@@ -87,6 +87,9 @@ vim.o.confirm = true
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+vim.keymap.set('n', '<C-y>', '10<C-y>', { noremap = true })
+vim.keymap.set('n', '<C-e>', '10<C-e>', { noremap = true })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
@@ -112,7 +115,7 @@ vim.api.nvim_create_autocmd('TermOpen', {
     vim.keymap.set('t', '<C-w><C-l>', '<C-\\><C-n><C-w>l', { buffer = true, desc = '' })
   end,
 })
-vim.keymap.set('n', '<leader>t', function()
+vim.keymap.set('n', '<C-t><C-t>', function()
   local term_buf = nil
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
     local name = vim.api.nvim_buf_get_name(buf)
@@ -130,6 +133,10 @@ vim.keymap.set('n', '<leader>t', function()
   end
   vim.cmd('startinsert')
 end, { desc = 'Start terminal in insert mode' })
+
+vim.keymap.set('t', '<C-t><C-t>', function()
+  vim.cmd('close')
+end, { desc = 'Close terminal window' })
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
@@ -153,9 +160,12 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+vim.keymap.set('n', '<C-w>0', '<C-w>c', { desc = 'Close window' })
+vim.keymap.set('n', '<C-w><C-0>', '<C-w>c', { desc = 'Close window' })
+
 vim.keymap.set('n', '<C-p>', '<cmd>tabp<CR>', { desc = 'Move focus to the previous tab' })
 vim.keymap.set('n', '<C-n>', '<cmd>tabn<CR>', { desc = 'Move focus to the next tab' })
-vim.keymap.set('n', '<C-t>', '<cmd>tab split<CR>', { desc = 'Create a new tab with the current buffer' })
+vim.keymap.set('n', 'tt', '<cmd>tab split<CR>', { desc = 'Create a new tab with the current buffer' })
 
 -- Command lie editing
 -- See `:help cmdline-editing`
@@ -244,6 +254,7 @@ require('lazy').setup({
   require 'kickstart.plugins.oil',
   require 'kickstart.plugins.quicker',
   require 'kickstart.plugins.nvim-scrollbar',
+  require 'kickstart.plugins.render-markdown',
 
   -- Colorscheme
   require 'kickstart.plugins.spring-night',
