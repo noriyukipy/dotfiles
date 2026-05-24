@@ -9,7 +9,7 @@ Install dependencies first.
 $ brew install ansible tmux go zsh tmux-mem-cpu-load peco
 
 # Packages required in Nvim
-$ brew install neovim ripgrep font-hack-nerd-font fd python-lsp-server
+$ brew install neovim ripgrep font-hack-nerd-font fd python-lsp-server neovim-remote
 ```
 
 Install Visual Studio Code, and install `code` command from it.

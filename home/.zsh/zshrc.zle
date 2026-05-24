@@ -1,8 +1,13 @@
 # zle の設定
 # man zshzle を確認すること
 
+# Edit command line in EDITOR
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^G' edit-command-line
+
 # コマンドライン編集機能を有効化
-bindkey -v
+bindkey -e
 
 # viins モードで emacs キーバインドを使う
 bindkey -M viins "^P" up-line-or-history #history-beginning-search-backward-end

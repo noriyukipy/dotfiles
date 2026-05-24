@@ -2,7 +2,11 @@
 # 基本的な環境変数を設定する
 export LANG=ja_JP.UTF-8
 export TERM=tmux-256color
-export EDITOR=vim
+if [[ -n "$NVIM" ]]; then
+  export EDITOR='nvr -cc split -c "set bufhidden=delete" --remote-wait'
+else
+  export EDITOR=nvim
+fi
 export LSCOLORS=cxfxbxdxbxegedabagabad
 HISTSIZE=10000000
 SAVEHIST=10000000
@@ -27,4 +31,3 @@ source ${BASE}/.zsh/zshrc.alias
 
 # [pyenv]
 #source ${BASE}/.zsh/zshrc.pyenv
-

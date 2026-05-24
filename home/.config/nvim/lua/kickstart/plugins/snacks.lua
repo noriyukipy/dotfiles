@@ -27,7 +27,7 @@ return {
       win = {
         input = {
           keys = {
-            ["<c-e>"] = { "qflist", mode = { "i", "n" } },
+            ["<c-q>"] = { "qflist", mode = { "i", "n" } },
           },
         },
       },
@@ -75,6 +75,7 @@ return {
     { "<leader>b", function() Snacks.explorer() end, desc = "File Explorer" },
     { "<leader>p", function() Snacks.picker.pickers() end, desc = "Pickers" },
     { "<leader>q", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
+    { "<c-q>", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
     { "<leader>r", function() Snacks.picker.recent() end, desc = "Find Files" },
 
     -- Keys with prefix <leader>s

@@ -101,7 +101,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.api.nvim_create_autocmd('TermOpen', {
   callback = function()
-    vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+    vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
     vim.keymap.set('n', 'q', '<cmd>close<CR>', { buffer = true, desc = 'Close terminal window' })
     vim.keymap.set('t', '<C-w>c', '<cmd>close<CR>', { buffer = true, desc = 'Close terminal window' })
     vim.keymap.set('t', '<C-w>j', '<C-\\><C-n><C-w>j', { buffer = true, desc = '' })
@@ -113,11 +113,29 @@ vim.api.nvim_create_autocmd('TermOpen', {
     vim.keymap.set('t', '<C-w><C-k>', '<C-\\><C-n><C-w>k', { buffer = true, desc = '' })
     vim.keymap.set('t', '<C-w><C-h>', '<C-\\><C-n><C-w>h', { buffer = true, desc = '' })
     vim.keymap.set('t', '<C-w><C-l>', '<C-\\><C-n><C-w>l', { buffer = true, desc = '' })
+    vim.keymap.set('t', '<C-w><C-w>', '<C-\\><C-n><C-w><C-w>', { desc = 'Switch window from terminal' })
     vim.keymap.set('t', '<C-w>0', '<cmd>close<CR>', { desc = 'Close window' })
     vim.keymap.set('t', '<C-w><C-0>', '<cmd>close<CR>', { desc = 'Close window' })
+    vim.keymap.set('t', '<C-w>o', '<C-\\><C-n><C-w>oi', { desc = 'Keep only the terminal pane' })
+    vim.keymap.set('t', '<C-w><C-o>', '<C-\\><C-n><C-w>oi', { desc = 'Keep only the terminal pane' })
   end,
 })
-vim.keymap.set('n', '<C-t><C-t>', function()
+
+-- Use insertmode wheneter focus moves to a terminal buffer.
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter', 'WinEnter' }, {
+  pattern = 'term://*',
+  callback = function()
+    if vim.bo.buftype == 'terminal' then
+      vim.cmd('startinsert')
+    end
+  end,
+})
+
+vim.keymap.set('n', '<C-t>', function()
+  if vim.bo.buftype == 'terminal' then
+    vim.cmd('close')
+    return
+  end
   local term_buf = nil
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
     local name = vim.api.nvim_buf_get_name(buf)
@@ -131,16 +149,18 @@ vim.keymap.set('n', '<C-t><C-t>', function()
     vim.api.nvim_set_current_buf(term_buf)
   else
     vim.cmd('terminal')
-    vim.cmd('set nu')
+    vim.cmd('set relativenumber')
   end
   vim.cmd('startinsert')
 end, { desc = 'Start terminal in insert mode' })
 
-vim.keymap.set('t', '<C-t><C-t>', function()
+vim.keymap.set('t', '<C-t>', function()
   vim.cmd('close')
 end, { desc = 'Close terminal window' })
 
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+-- This overrites the detaulc C-w_C-t map to move the top window.
+vim.keymap.set('n', '<C-w><C-t>', '<cmd>tab split<CR>', { desc = 'Create a new tab with the current buffer' })
+vim.keymap.set('n', '<C-w>t', '<cmd>tab split<CR>', { desc = 'Create a new tab with the current buffer' })
 
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
