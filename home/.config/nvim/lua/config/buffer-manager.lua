@@ -109,7 +109,4 @@ function M.open()
   vim.keymap.set("n", "<C-t>", open_with("tabnew"),  { buffer = buf, silent = true })
 end
 
--- Global keymap
-vim.api.nvim_create_user_command("BufMgr", M.open, {})
-vim.keymap.set("n", "<leader><leader>", M.open, { desc = "Buffer manager" })
-
+return M

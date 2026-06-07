@@ -323,9 +323,13 @@ require('lazy').setup({
   },
 })
 
--- custom plugin
-require('custom.plugins.buffer-manager')
-require('custom.plugins.open-scratch-buffer')
+-- custom config
+local bm = require('config.buffer-manager')
+vim.api.nvim_create_user_command("BufMgr", bm.open, {})
+vim.keymap.set("n", "<leader><leader>", bm.open, { desc = "Buffer manager" })
+
+local scratch = require('config.open-scratch-buffer')
+vim.api.nvim_create_user_command('OpenScratchBuffer', scratch.open, {})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
