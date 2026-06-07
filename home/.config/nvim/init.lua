@@ -274,7 +274,8 @@ require('lazy').setup({
   require 'kickstart.plugins.gitsigns',
   require 'kickstart.plugins.snacks',
   require 'kickstart.plugins.oil',
-  require 'kickstart.plugins.quicker',
+  -- require 'kickstart.plugins.quicker',
+  require 'kickstart.plugins.nvim-bqf',
   require 'kickstart.plugins.nvim-scrollbar',
   require 'kickstart.plugins.render-markdown',
 
@@ -321,6 +322,10 @@ require('lazy').setup({
     },
   },
 })
+
+-- custom plugin
+require('custom.plugins.buffer-manager')
+require('custom.plugins.open-scratch-buffer')
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
