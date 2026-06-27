@@ -47,9 +47,24 @@ local function on_write(buf, original)
   return refreshed
 end
 
+local function find_existing()
+  for _, b in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_valid(b) and vim.bo[b].filetype == FILETYPE then
+      return b
+    end
+  end
+  return nil
+end
+
 function M.open()
   local prev_buf = vim.api.nvim_get_current_buf()
   if vim.bo[prev_buf].filetype == FILETYPE then
+    return
+  end
+
+  local existing = find_existing()
+  if existing then
+    vim.api.nvim_set_current_buf(existing)
     return
   end
 
