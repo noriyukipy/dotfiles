@@ -15,6 +15,10 @@ return {
   config = function(_, opts)
     require('tokyonight').setup(opts)
     vim.cmd.colorscheme 'tokyonight-moon'
+
+    -- Set color for auto-complete preinsert option
+    local colors = require('tokyonight.colors').setup()
+    vim.api.nvim_set_hl(0, 'PreInsert', { fg = colors.fg_dark, italic = true })
   end
 }
 
