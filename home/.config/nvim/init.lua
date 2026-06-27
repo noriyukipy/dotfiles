@@ -55,6 +55,12 @@ vim.o.timeoutlen = 300
 vim.o.splitright = true
 vim.o.splitbelow = true
 
+-- Indent config
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
@@ -221,7 +227,80 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
---
+-- [[ Quickfix ]]
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Close quickfix window with q',
+  group = vim.api.nvim_create_augroup('quickfix-close', { clear = true }),
+  pattern = 'qf',
+  callback = function(args)
+    vim.keymap.set('n', 'q', '<cmd>cclose<CR>', { buffer = args.buf, silent = true, desc = 'Close quickfix' })
+  end,
+})
+
+
+-- [[ Completion ]]
+-- See these helps for more details
+-- - `:help 'completeopt'`
+-- - `:help 'autocomplete'`
+-- - `:help ins-autocompletion`
+
+-- Enable LSP autotrigger so server-declared trigger characters (e.g. `.`, `::`)
+-- pop the menu. Word-character triggers are handled by 'autocomplete' above.
+-- See `:help vim.lsp.completion.enable()`.
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if client and client:supports_method('textDocument/completion') then
+      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+    end
+  end,
+})
+
+-- Re-trigger autocomplete after accepting a directory entry so the user can
+-- keep drilling down (e.g. `./start/` -> immediately show its contents).
+-- Uses no-remap feedkeys to bypass our <C-n> keymap and run with auto_src.
+vim.api.nvim_create_autocmd('CompleteDone', {
+  callback = function()
+    local item = vim.v.completed_item
+    if item and type(item.word) == 'string' and item.word:sub(-1) == '/' then
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, false, true), 'n', false)
+    end
+  end,
+})
+
+-- User completion function for file paths, wired into 'complete' via
+-- `Fv:lua.file_path_complete`. Only fires when the prefix looks like a path
+-- (starts with `./`, `../`, `~/`, or `/`) to avoid noisy suggestions on
+-- ordinary words. See `:help complete-functions` and `:help v:lua`.
+function _G.file_path_complete(findstart, base)
+  if findstart == 1 then
+    local line = vim.api.nvim_get_current_line()
+    local col = vim.fn.col('.') - 1
+    local start = col
+    while start > 0 and line:sub(start, start):match('[%w%./_%-~]') do
+      start = start - 1
+    end
+    local prefix = line:sub(start + 1, col)
+    if not prefix:match('^%.?%.?/') and not prefix:match('^~/') then
+      return -3
+    end
+    return start
+  end
+  local items = {}
+  for _, m in ipairs(vim.fn.getcompletion(base, 'file')) do
+    table.insert(items, { word = m, menu = '[path]' })
+  end
+  return items
+end
+
+vim.opt.completeopt = { "preinsert", "menuone", "popup", "preview", }
+vim.opt.autocomplete = false
+vim.opt.infercase = false
+vim.opt.complete = 'o,Fv:lua.file_path_complete,.'
+-- Possible other options:
+-- 'o,Fv:lua.file_path_complete,.,w,b,t'
+
+
 -- [[ LSP config ]]
 -- See: `:python-lsp-server`
 -- Required: `$ brew install python-lsp-server`
