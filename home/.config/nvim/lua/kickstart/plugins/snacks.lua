@@ -31,6 +31,26 @@ return {
           },
         },
       },
+      layout = {
+        reverse = false,
+        layout = {
+          box = "vertical",
+          backdrop = false,
+          row = -1,
+          width = 0,
+          height = 0.4,
+          -- border = "bold",
+          title = " {title} {live} {flags}",
+          title_pos = "left",
+          position = "bottom",
+          {
+            box = "vertical",
+            { win = "preview", title = "{preview}", border = "bold" },
+            { win = "list", border = "none" },
+          },
+          { win = "input", height = 1, border = "rounded" },
+        },
+      },
       -- Disable keymap in explorer https://github.com/folke/snacks.nvim/discussions/1407
       sources = {
         explorer = {
@@ -75,7 +95,14 @@ return {
     { "<leader>b", function() Snacks.explorer() end, desc = "File Explorer" },
     { "<leader>p", function() Snacks.picker.pickers() end, desc = "Pickers" },
     { "<leader>q", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
-    { "<c-s>", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
+    { "<c-s>", function()
+      if vim.bo.buftype == "quickfix" then
+        vim.cmd("cclose")
+        Snacks.picker.qflist()
+      else
+        vim.cmd("copen")
+      end
+    end, desc = "Toggle Quickfix / Picker" },
     { "<leader>r", function() Snacks.picker.recent() end, desc = "Find Files" },
 
     -- Keys with prefix <leader>s
