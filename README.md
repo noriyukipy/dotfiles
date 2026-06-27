@@ -6,7 +6,7 @@ Install dependencies first.
 
 ```sh
 # for MacOS with Homebrew package manager
-$ brew install ansible tmux go zsh tmux-mem-cpu-load peco
+$ brew install ansible tmux go zsh tmux-mem-cpu-load fzf
 
 # Packages required in Nvim
 $ brew install neovim ripgrep font-hack-nerd-font fd python-lsp-server neovim-remote
