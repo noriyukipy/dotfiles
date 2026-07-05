@@ -2,11 +2,9 @@
 # See `man ghostty` or https://ghostty.org/docs
 
 # [[ Default keymap ]]
-# Clear all default keymaps first, and then set ones that are needed.
-keybind = clear
-keybind = super+shift+,=reload_config
-keybind = super+v=paste_from_clipboard
-keybind = super+c=copy_to_clipboard
+# Clear overlapped default keybinds
+# See `$ ghostty +list-keybinds --default`
+keybind = super+[=unbind
 
 # [[ Use left command as meta key in tmux ]]
 # The menu shortcuts need to change in System Preferences if they are overlapped to your keybinds.
