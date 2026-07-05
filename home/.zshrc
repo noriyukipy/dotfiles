@@ -24,7 +24,7 @@ source ${BASE}/.zsh/zshrc.antigen
 source ${BASE}/.zsh/zshrc.zle
 
 # [tmux]
-alias tmux='tmux -f <(cat $BASE/.tmux/tmux-prefix-q.conf $BASE/.tmux/tmux-default.conf $BASE/.tmux/tmux-xmonad.conf)'
+alias tmux='tmux -f <(cat $BASE/.tmux/tmux-default.conf $BASE/.tmux/tmux-xmonad.conf)'
 
 # aliasの設定
 source ${BASE}/.zsh/zshrc.alias

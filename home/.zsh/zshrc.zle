@@ -113,3 +113,12 @@ zle -N zle-keymap-select
 export FZF_DEFAULT_OPTS="--layout=reverse"
 source <(fzf --zsh)
 
+fzf-git-status-widget() {
+  local files
+  files=$(git status -s | fzf -m --ansi --preview 'git diff --color=always {2}' | awk '{print $2}')
+  LBUFFER="${LBUFFER}${files}"
+  zle reset-prompt
+}
+zle -N fzf-git-status-widget
+bindkey '^Y' fzf-git-status-widget
+

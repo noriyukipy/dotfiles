@@ -56,8 +56,9 @@ vim.o.splitright = true
 vim.o.splitbelow = true
 
 -- Indent config
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 
@@ -109,35 +110,35 @@ vim.api.nvim_create_autocmd('TermOpen', {
   callback = function()
     vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
     vim.keymap.set('n', 'q', '<cmd>close<CR>', { buffer = true, desc = 'Close terminal window' })
-    vim.keymap.set('t', '<C-w>c', '<cmd>close<CR>', { buffer = true, desc = 'Close terminal window' })
-    vim.keymap.set('t', '<C-w>j', '<C-\\><C-n><C-w>j', { buffer = true, desc = '' })
-    vim.keymap.set('t', '<C-w>k', '<C-\\><C-n><C-w>k', { buffer = true, desc = '' })
-    vim.keymap.set('t', '<C-w>h', '<C-\\><C-n><C-w>h', { buffer = true, desc = '' })
-    vim.keymap.set('t', '<C-w>l', '<C-\\><C-n><C-w>l', { buffer = true, desc = '' })
-    vim.keymap.set('t', '<C-w><C-c>', '<cmd>close<CR>', { buffer = true, desc = 'Close terminal window' })
-    vim.keymap.set('t', '<C-w><C-j>', '<C-\\><C-n><C-w>j', { buffer = true, desc = '' })
-    vim.keymap.set('t', '<C-w><C-k>', '<C-\\><C-n><C-w>k', { buffer = true, desc = '' })
-    vim.keymap.set('t', '<C-w><C-h>', '<C-\\><C-n><C-w>h', { buffer = true, desc = '' })
-    vim.keymap.set('t', '<C-w><C-l>', '<C-\\><C-n><C-w>l', { buffer = true, desc = '' })
-    vim.keymap.set('t', '<C-w><C-w>', '<C-\\><C-n><C-w><C-w>', { desc = 'Switch window from terminal' })
-    vim.keymap.set('t', '<C-w>0', '<cmd>close<CR>', { desc = 'Close window' })
-    vim.keymap.set('t', '<C-w><C-0>', '<cmd>close<CR>', { desc = 'Close window' })
-    vim.keymap.set('t', '<C-w>o', '<C-\\><C-n><C-w>oi', { desc = 'Keep only the terminal pane' })
-    vim.keymap.set('t', '<C-w><C-o>', '<C-\\><C-n><C-w>oi', { desc = 'Keep only the terminal pane' })
+    --vim.keymap.set('t', '<C-w>c', '<cmd>close<CR>', { buffer = true, desc = 'Close terminal window' })
+    --vim.keymap.set('t', '<C-w>j', '<C-\\><C-n><C-w>j', { buffer = true, desc = '' })
+    --vim.keymap.set('t', '<C-w>k', '<C-\\><C-n><C-w>k', { buffer = true, desc = '' })
+    --vim.keymap.set('t', '<C-w>h', '<C-\\><C-n><C-w>h', { buffer = true, desc = '' })
+    --vim.keymap.set('t', '<C-w>l', '<C-\\><C-n><C-w>l', { buffer = true, desc = '' })
+    --vim.keymap.set('t', '<C-w><C-c>', '<cmd>close<CR>', { buffer = true, desc = 'Close terminal window' })
+    --vim.keymap.set('t', '<C-w><C-j>', '<C-\\><C-n><C-w>j', { buffer = true, desc = '' })
+    --vim.keymap.set('t', '<C-w><C-k>', '<C-\\><C-n><C-w>k', { buffer = true, desc = '' })
+    --vim.keymap.set('t', '<C-w><C-h>', '<C-\\><C-n><C-w>h', { buffer = true, desc = '' })
+    --vim.keymap.set('t', '<C-w><C-l>', '<C-\\><C-n><C-w>l', { buffer = true, desc = '' })
+    --vim.keymap.set('t', '<C-w><C-w>', '<C-\\><C-n><C-w><C-w>', { desc = 'Switch window from terminal' })
+    --vim.keymap.set('t', '<C-w>0', '<cmd>close<CR>', { desc = 'Close window' })
+    --vim.keymap.set('t', '<C-w><C-0>', '<cmd>close<CR>', { desc = 'Close window' })
+    --vim.keymap.set('t', '<C-w>o', '<C-\\><C-n><C-w>oi', { desc = 'Keep only the terminal pane' })
+    --vim.keymap.set('t', '<C-w><C-o>', '<C-\\><C-n><C-w>oi', { desc = 'Keep only the terminal pane' })
   end,
 })
 
 -- Use insertmode wheneter focus moves to a terminal buffer.
-vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter', 'WinEnter' }, {
-  pattern = 'term://*',
-  callback = function()
-    if vim.bo.buftype == 'terminal' then
-      vim.cmd('startinsert')
-    end
-  end,
-})
+--vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter', 'WinEnter' }, {
+--  pattern = 'term://*',
+--  callback = function()
+--    if vim.bo.buftype == 'terminal' then
+--      vim.cmd('startinsert')
+--    end
+--  end,
+--})
 
-vim.keymap.set('n', '<C-t>', function()
+vim.keymap.set('n', '<C-Space>', function()  -- C-@ to closethe terminal
   if vim.bo.buftype == 'terminal' then
     vim.cmd('close')
     return
@@ -160,7 +161,7 @@ vim.keymap.set('n', '<C-t>', function()
   vim.cmd('startinsert')
 end, { desc = 'Start terminal in insert mode' })
 
-vim.keymap.set('t', '<C-t>', function()
+vim.keymap.set('t', '<C-Space>', function()
   vim.cmd('close')
 end, { desc = 'Close terminal window' })
 
@@ -237,6 +238,28 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+-- [[ Per-filetype indent settings ]]
+local indent_group = vim.api.nvim_create_augroup('filetype-indent', { clear = true })
+
+vim.api.nvim_create_autocmd('FileType', {
+  group = indent_group,
+  pattern = 'lua',
+  callback = function()
+    vim.bo.shiftwidth = 2
+    vim.bo.tabstop = 2
+    vim.bo.softtabstop = 2
+  end,
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  group = indent_group,
+  pattern = 'python',
+  callback = function()
+    vim.bo.shiftwidth = 4
+    vim.bo.tabstop = 4
+    vim.bo.softtabstop = 4
+  end,
+})
 
 -- [[ Completion ]]
 -- See these helps for more details
@@ -293,10 +316,11 @@ function _G.file_path_complete(findstart, base)
   return items
 end
 
-vim.opt.completeopt = { "preinsert", "menuone", "popup", "preview", }
-vim.opt.autocomplete = false
-vim.opt.infercase = false
+vim.opt.autocomplete = true
+vim.opt.autocompletedelay = 300
+vim.opt.completeopt = { "fuzzy", "menuone", "popup", "preview", "noselect" }
 vim.opt.complete = 'o,Fv:lua.file_path_complete,.'
+
 -- Possible other options:
 -- 'o,Fv:lua.file_path_complete,.,w,b,t'
 
@@ -357,6 +381,7 @@ require('lazy').setup({
   require 'kickstart.plugins.nvim-bqf',
   require 'kickstart.plugins.nvim-scrollbar',
   require 'kickstart.plugins.render-markdown',
+  require 'kickstart.plugins.fzf',
 
   -- Colorscheme
   require 'kickstart.plugins.spring-night',

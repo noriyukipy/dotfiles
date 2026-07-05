@@ -27,7 +27,7 @@ return {
       win = {
         input = {
           keys = {
-            ["<c-s>"] = { "qflist", mode = { "i", "n" } },
+            ["<c-q>"] = { "qflist", mode = { "i", "n" } },
           },
         },
       },
@@ -85,33 +85,6 @@ return {
     }
   },
   keys = {
-    -- Keys with prefix <leader>
-    -- { "<leader><leader>", function() Snacks.picker.buffers() end, desc = "Buffers" },
-    { "<leader>f", function() Snacks.picker.files() end, desc = "Find Files" },
-    { "<leader>g", function() Snacks.picker.grep() end, desc = "Grep" },
-    { "<leader>/", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
-    { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
-    { "<leader>h", function() Snacks.picker.help() end, desc = "Help Pages" },
     { "<leader>b", function() Snacks.explorer() end, desc = "File Explorer" },
-    { "<leader>p", function() Snacks.picker.pickers() end, desc = "Pickers" },
-    { "<leader>q", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
-    { "<c-s>", function()
-      if vim.bo.buftype == "quickfix" then
-        vim.cmd("cclose")
-        Snacks.picker.qflist()
-      else
-        vim.cmd("copen")
-      end
-    end, desc = "Toggle Quickfix / Picker" },
-    { "<leader>r", function() Snacks.picker.recent() end, desc = "Find Files" },
-
-    -- Keys with prefix <leader>s
-    { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
-    { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
-    { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
-    { '<leader>s/', function() Snacks.picker.search_history() end, desc = "Search History" },
-
-    -- Terminal
-    --{ "<leader>t", function() Snacks.terminal() end, desc = "Toggle Terminal" },
   },
 }

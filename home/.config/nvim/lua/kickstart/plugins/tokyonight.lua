@@ -10,6 +10,10 @@ return {
       hl.LineNrAbove = { fg = dim_orange }
       hl.LineNrBelow = { fg = dim_orange }
       hl.CursorLineNr = { fg = c.orange, bold = true }
+
+      -- Autocomplete (Pmenu) colors
+      hl.Pmenu = { bg = c.bg_popup, fg = c.fg }
+      hl.PmenuSel = { bg = c.bg_highlight, bold = true }
     end,
   },
   config = function(_, opts)
