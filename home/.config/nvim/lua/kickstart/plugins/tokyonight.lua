@@ -15,9 +15,15 @@ return {
       hl.Pmenu = { bg = c.bg_popup, fg = c.fg }
       hl.PmenuSel = { bg = c.bg_highlight, bold = true }
     end,
+    style = "moon",
+    transparent = true,
+    styles = {
+      sidebars = "transparent",
+      floats = "transparent",
+    },
   },
   config = function(_, opts)
-    require('tokyonight').setup(opts)
+    require("tokyonight").setup(opts)
     vim.cmd.colorscheme 'tokyonight-moon'
 
     -- Set color for auto-complete preinsert option

@@ -1,6 +1,9 @@
 # [[ Ghostty Config ]]
 # See `man ghostty` or https://ghostty.org/docs
 
+# [[ Color theme ]]
+theme = Tokyonight Moon
+
 # [[ Default keymap ]]
 # Clear overlapped default keybinds
 # See `$ ghostty +list-keybinds --default`
