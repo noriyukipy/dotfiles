@@ -14,7 +14,6 @@
         - .zsh
         - .zshrc
         - .config/nvim
-        - .config/ghostty
     # Install dotfiles in HOME directory
     - name: Install dotfiles in HOME directory
       file:
@@ -26,7 +25,6 @@
         - .zsh
         - .zshrc
         - .config/nvim
-        - .config/ghostty
     - name: Get plugin manager "antigen" for zsh
       get_url:
         url: https://git.io/antigen
